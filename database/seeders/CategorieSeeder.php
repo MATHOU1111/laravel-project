@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class CategoriesTableSeeder extends Seeder
+class CategorieSeeder extends Seeder
 {
     public function run()
     {
