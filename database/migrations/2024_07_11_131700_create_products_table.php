@@ -14,7 +14,8 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('category_id'); // Ajout de la colonne category_id
+            $table->integer('stock'); // Formerly quantity
+            $table->unsignedBigInteger('category_id'); 
             $table->timestamps();
     
             $table->foreign('category_id')->references('id')->on('categories'); // Définition de la clé étrangère

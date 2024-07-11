@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraph,
                 'price' => $faker->randomFloat(2, 1, 1000),
                 'image' => $faker->imageUrl(400, 300, 'technics', true),
-                'quantity' => $faker->numberBetween(1, 100),
+                'stock' => $faker->numberBetween(1, 100),
                 'category_id' => $faker->randomElement($categories),
                 'created_at' => now(),
                 'updated_at' => now()
