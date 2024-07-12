@@ -17,7 +17,8 @@ class CreateOrdersTable extends Migration
             $table->string('postal_code');
             $table->string('country');
             $table->string('payment_method');
-            $table->decimal('total', 8, 2);
+            $table->decimal('total_amount', 8, 2);
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 
 class AdminOrderController extends Controller
-
 {
     // Afficher toutes les commandes
     public function index()
@@ -26,15 +25,28 @@ class AdminOrderController extends Controller
     }
 
     // Mettre à jour le statut d'une commande
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
         $order = Order::findOrFail($id);
         
-        // Mettre à jour le statut de la commande
-        $order->update([
-            'status' => 'processed' // Par exemple, tu peux ajuster selon tes besoins
+        // Valider et mettre à jour le statut de la commande
+        $request->validate([
+            'status' => ['required', Rule::in(['En cours de préparation', 'Validé', 'En transit', 'Livré'])]
         ]);
+    
+        $order->update([
+            'status' => $request->input('status')
+        ]);
+    
+        return redirect()->route('admin.orders.show', $order)->with('success', 'Order status updated successfully.');
+    }
 
-        return redirect()->route('admin.orders.index')->with('success', 'Order status updated successfully.');
+    // Supprimer une commande
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully.');
     }
 }

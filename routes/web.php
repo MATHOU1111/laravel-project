@@ -54,7 +54,7 @@ Route::put('/admin/products/{product}', [AdminProductController::class, 'update'
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
 
-// Routes pour la gestion des commandes (Admin)
 Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
 Route::get('/admin/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
 Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+Route::put('/admin/orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
