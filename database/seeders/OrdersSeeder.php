@@ -20,6 +20,7 @@ class OrdersSeeder extends Seeder
             'payment_method' => 'Carte de crédit',
             'total_amount' => 150.00,
             'status' => 'pending',
+            'products' => '{}'
         ]);
 
         Order::create([
@@ -32,6 +33,7 @@ class OrdersSeeder extends Seeder
             'payment_method' => 'PayPal',
             'total_amount' => 200.00,
             'status' => 'pending',
+            'products' => '{}'
         ]);
 
         // Ajoutez d'autres commandes si nécessaire

@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->name }}</td> <!-- Utilisation de $order->name pour le nom du client -->
-                    <td>{{ $order->total }} €</td>
+                    <td>{{ $order->total_amount }} €</td>
                     <td>{{ $order->status }}</td>
                     <td>
                         <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>

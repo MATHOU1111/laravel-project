@@ -47,7 +47,8 @@ class OrderController extends Controller
         $order->country = $request->input('country');
         $order->payment_method = $request->input('payment_method');
         $order->products = json_encode($cart); // Convertir le panier en JSON pour l'enregistrement
-        $order->total = $total;
+        $order->total_amount = $total;
+        $order->status = 'pending';
         $order->save();
 
         // Vider le panier après la commande

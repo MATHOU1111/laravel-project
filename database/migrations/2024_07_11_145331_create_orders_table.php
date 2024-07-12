@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('country');
             $table->string('payment_method');
             $table->decimal('total_amount', 8, 2);
+            $table->json('products');
             $table->string('status');
             $table->timestamps();
         });
