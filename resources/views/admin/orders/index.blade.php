@@ -1,5 +1,3 @@
-<!-- resources/views/admin/orders/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('title', 'Manage Orders')
@@ -22,16 +20,20 @@
             @foreach ($orders as $order)
                 <tr>
                     <td>{{ $order->id }}</td>
-                    <td>{{ $order->name }}</td> <!-- Utilisation de $order->name pour le nom du client -->
+                    <td>{{ $order->name }}</td>
                     <td>{{ $order->total_amount }} €</td>
                     <td>{{ $order->status }}</td>
                     <td>
-                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
-                        <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info btn-sm">Voir</a>
+                        @if ($order->status !== 'Livré')
+                        <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST" class="d-inline">
                             @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success btn-sm">Mark as Processed</button>
-                        </form>
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success">Changer le statut</button>
+                            </form>
+                        @else
+                            
+                        @endif
                     </td>
                 </tr>
             @endforeach

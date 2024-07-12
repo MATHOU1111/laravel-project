@@ -1,5 +1,3 @@
-<!-- resources/views/admin/orders/show.blade.php -->
-
 @extends('layouts.app')
 
 @section('title', 'Order Details')
@@ -49,21 +47,23 @@
                         <div class="col-md-3">Status:</div>
                         <div class="col-md-9">{{ $order->status }}</div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{-- <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="d-inline"> --}}
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="status" value="validated">
-                                <button type="submit" class="btn btn-success">Mark as Validated</button>
-                            </form>
+                    @if ($order->status !== 'Livré')
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-success">Changer le statut</button>
+                                </form>
+                            </div>
                         </div>
+                    @endif
+                    <div class="row mb-3">
                         <div class="col-md-6 text-end">
                             <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">Delete Order</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">Supprimer</button>
                             </form>
                         </div>
                     </div>

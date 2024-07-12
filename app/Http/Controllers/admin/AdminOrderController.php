@@ -25,20 +25,16 @@ class AdminOrderController extends Controller
     }
 
     // Mettre à jour le statut d'une commande
-    public function updateStatus(Request $request, $id)
+    public function updateStatus($id)
     {
         $order = Order::findOrFail($id);
-        
-        // Valider et mettre à jour le statut de la commande
-        $request->validate([
-            'status' => ['required', Rule::in(['En cours de préparation', 'Validé', 'En transit', 'Livré'])]
-        ]);
-    
+
+        // Update the order status to "Livré"
         $order->update([
-            'status' => $request->input('status')
+            'status' => 'Livré',
         ]);
-    
-        return redirect()->route('admin.orders.show', $order)->with('success', 'Order status updated successfully.');
+
+        return redirect()->route('admin.orders.show', $order)->with('success', 'Order status updated to "Livré" successfully.');
     }
 
     // Supprimer une commande
