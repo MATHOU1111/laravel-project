@@ -34,7 +34,7 @@ class AdminOrderController extends Controller
             'status' => 'Livré',
         ]);
 
-        return redirect()->route('admin.orders.show', $order)->with('success', 'Order status updated to "Livré" successfully.');
+        return redirect()->route('admin.orders.index', $order)->with('success', 'Order status updated to "Livré" successfully.');
     }
 
     // Supprimer une commande

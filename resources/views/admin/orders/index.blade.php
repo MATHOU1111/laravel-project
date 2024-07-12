@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Manage Orders</h1>
+    <h1>Commandes</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Total Amount</th>
+                <th>ID</th>
+                <th>Nom du client</th>
+                <th>Prix</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>

@@ -20,8 +20,15 @@ class OrdersSeeder extends Seeder
             'payment_method' => 'Carte de crédit',
             'total_amount' => 150.00,
             'status' => 'En attente de livraison',
-            'products' => '{}'
-        ]);
+            'products' => '{
+                            "3": {
+                                "name": "recusandae",
+                                "image": "https://via.placeholder.com/400x300.png/0066ff?text=technics+qui",
+                                "price": "731.99",
+                                "quantity": 1
+                                }
+                            }'
+            ]);
 
         Order::create([
             'name' => 'Jane Smith',
@@ -33,8 +40,15 @@ class OrdersSeeder extends Seeder
             'payment_method' => 'PayPal',
             'total_amount' => 200.00,
             'status' => 'En attente de livraison',
-            'products' => '{}'
-        ]);
+            'products' => '{
+                            "3": {
+                                "name": "recusandae",
+                                "image": "https://via.placeholder.com/400x300.png/0066ff?text=technics+qui",
+                                "price": "731.99",
+                                "quantity": 1
+                                }
+                            }'
+            ]);
 
         // Ajoutez d'autres commandes si nécessaire
     }
