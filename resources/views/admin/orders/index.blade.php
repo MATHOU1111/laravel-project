@@ -22,12 +22,12 @@
             @foreach ($orders as $order)
                 <tr>
                     <td>{{ $order->id }}</td>
-                    <td>{{ $order->customer_name }}</td>
-                    <td>{{ $order->total_amount }} €</td>
+                    <td>{{ $order->name }}</td> <!-- Utilisation de $order->name pour le nom du client -->
+                    <td>{{ $order->total }} €</td>
                     <td>{{ $order->status }}</td>
                     <td>
                         <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
-                        {{-- <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" style="display: inline-block;"> --}}
+                        <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success btn-sm">Mark as Processed</button>
