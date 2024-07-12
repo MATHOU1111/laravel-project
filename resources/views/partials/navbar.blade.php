@@ -14,6 +14,9 @@
             <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('contact.form') }}">Contact</a>
             </li>
+            <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">Administration</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
