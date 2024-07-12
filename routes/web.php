@@ -7,8 +7,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\admin\ProductController as AdminProductController;
-use App\Http\Controllers\admin\AdminOrderController; // Utilise le bon namespace
-
+use App\Http\Controllers\admin\AdminOrderController; 
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +20,16 @@ use App\Http\Controllers\admin\AdminOrderController; // Utilise le bon namespace
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+Route::get('/', function () {
+    return view('home'); })->name('home');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
 
 // Routes pour les produits
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -61,5 +70,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::delete('orders/{order}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
-
+    Route::patch('orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });
+

@@ -2,27 +2,21 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle(Request $request, Closure $next, $guard = null)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+        if (Auth::guard($guard)->check()) {
+            // Si l'utilisateur est authentifié et l'URL est vide, redirige vers l'accueil
+            if ($request->is('/') || $request->is('home')) {
+                return redirect('/home'); // Remplacez '/home' par votre URL d'accueil
             }
+            // Sinon, redirige vers la page par défaut (généralement '/home' ou '/dashboard')
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);

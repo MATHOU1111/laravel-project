@@ -10,12 +10,11 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">Admin Dashboard</h1>
-                    <p class="card-text">Welcome to the admin dashboard.</p>
+                    <h1 class="card-title">Administration</h1>
                     <hr>
-                    <div class="d-grid gap-2">
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Manage Products</a>
-                        <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">Manage Orders</a>
+                    <div class="d-grid gap-4">
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Produits</a>
+                        <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">Commandes</a>
                     </div>
                 </div>
             </div>

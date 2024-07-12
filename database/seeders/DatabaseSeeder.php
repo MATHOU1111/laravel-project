@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class, // Correct class name
             OrdersSeeder::class
         ]);
+        $this->call(UserSeeder::class);
+        $this->call(LoginSeeder::class);
     }
 }

@@ -19,7 +19,7 @@ class OrdersSeeder extends Seeder
             'country' => 'France',
             'payment_method' => 'Carte de crédit',
             'total_amount' => 150.00,
-            'status' => 'pending',
+            'status' => 'En attente de livraison',
             'products' => '{}'
         ]);
 
@@ -32,7 +32,7 @@ class OrdersSeeder extends Seeder
             'country' => 'USA',
             'payment_method' => 'PayPal',
             'total_amount' => 200.00,
-            'status' => 'pending',
+            'status' => 'En attente de livraison',
             'products' => '{}'
         ]);
 
