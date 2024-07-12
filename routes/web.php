@@ -39,22 +39,27 @@ Route::post('/checkout', [OrderController::class, 'processCheckout'])->name('che
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitContactForm'])->name('contact.submit');
 
-// Route pour afficher le tableau de bord de l'administration
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Route pour afficher le tableau de bord de l'administration
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-// Routes pour la gestion des produits (Admin)
-Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.products.index');
-Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
-Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
-Route::get('/admin/products/{product}', [AdminProductController::class, 'show'])->name('admin.products.show');
-Route::get('/admin/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
-Route::put('/admin/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
-Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+    // Routes pour la gestion des produits (Admin)
+    Route::get('products', [AdminProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [AdminProductController::class, 'create'])->name('products.create');
+    Route::post('products', [AdminProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product}', [AdminProductController::class, 'show'])->name('products.show');
+    Route::get('products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [AdminProductController::class, 'update'])->name('products.update');
+    Route::delete('products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
 
 
-Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
-Route::get('/admin/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
-Route::delete('/admin/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
-Route::put('/admin/orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    
+    // Routes pour la gestion des commandes (Admin)
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::delete('orders/{order}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+});
